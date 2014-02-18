@@ -1,0 +1,19 @@
+-module(p13).
+-author("andrAnat").
+
+%% API
+-export([decode/1,create/1]).
+
+decode([])->[];
+decode(TL)->decode(TL,[]).
+
+decode([],RDY)-> p05:reverse1(RDY);
+decode([HD|TL],RDY)-> List=create(HD),decode(TL,list_to_list(List,RDY)).
+
+
+create({0,_})-> [];
+create({Much,Num})-> [Num|create({Much-1,Num})].
+
+list_to_list([],[])->[];
+list_to_list([],Ready)->Ready;
+list_to_list([H|T],Ready)->list_to_list(T,[H|Ready]).
