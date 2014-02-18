@@ -1,0 +1,12 @@
+-module(p15).
+-author("andrAnat").
+
+%% API
+-export([replica/2]).
+
+replica([],_)->[];
+replica(_,0)->[];
+replica([HD|TL],Num)->replica([HD|TL],Num,[]).
+
+replica([],_,READY)->READY;
+replica([HD|TL],Num,READY)-> List=p13:create({Num,HD}),replica(TL,Num,READY++List).
