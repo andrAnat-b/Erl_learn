@@ -1,0 +1,12 @@
+-module(p04).
+-author("andrAnat").
+
+%% API
+-export([len1/1,len2/1]).
+
+len1([])->0;
+len1([_|TL])->1+len1(TL).
+
+len2(List)->len2(List,0).
+len2([],CNTR)->CNTR;
+len2([_|TL],CNTR)->len2(TL,CNTR+1).
