@@ -1,0 +1,9 @@
+-module(p03).
+-author("andrAnat").
+
+%% API
+-export([element_at/2]).
+
+element_at([],_)-> undefined;
+element_at([HD|_],1)->HD;
+element_at([_|TL],CNTR)->element_at(TL,CNTR-1).
