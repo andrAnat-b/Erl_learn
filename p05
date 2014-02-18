@@ -1,0 +1,12 @@
+-module(p05).
+-author("andrAnat").
+
+%% API
+-export([reverse1/1,reverse2/1]).
+
+reverse1(List)->reverse1(List,[]).
+reverse1([],Output)-> Output;
+reverse1([HD|TL],Output)->reverse1(TL,[HD|Output]).
+
+reverse2([])->[];
+reverse2([HD|TL])-> reverse2(TL)++[HD].
