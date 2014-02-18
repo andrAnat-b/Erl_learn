@@ -1,0 +1,10 @@
+-module(p10).
+-author("andrAnat").
+
+%% API
+-export([encode/1]).
+encode([])->[];
+encode([HD|TL])->encode(TL,{1,HD},[]).
+encode([],RDY,READY)-> p05:reverse1([RDY|READY]);
+encode([HD|TL],{Sum,HD},Ready)-> encode(TL,{Sum+1,HD},Ready);
+encode([HD|TL],HDN,Ready)-> encode(TL,{1,HD},[HDN|Ready]).
