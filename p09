@@ -1,0 +1,14 @@
+-module(p09).
+-author("andrAnat").
+
+%% API
+-export([pack/1]).
+
+pack([])->[];
+pack([HD|TL])->pack(HD,TL,[],[]).
+pack(HD,[],[],Ready)->p05:reverse1([[HD]|Ready]);
+pack(_,[],[HD|_]=Cur,Ready)->p05:reverse1([[HD|Cur]|Ready]);
+pack(HD,[HD|TL],Cur,_Ready)->pack(HD,TL,[HD|Cur],_Ready);
+pack(Pat,[HD|TL],[Pat|Cur],Ready)->pack(HD,TL,[],[[Pat,Pat|Cur]|Ready]);
+pack(Pat,[HD|TL],[HD2|Cur],Ready)->Lst=[[HD2|Cur]|Ready], pack(HD,TL,[],[[Pat]|Lst]);
+pack(Pat,[HD|TL],[],Ready)-> pack(HD,TL,[],[[Pat]|Ready]).
