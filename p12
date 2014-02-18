@@ -1,0 +1,19 @@
+-module(p12).
+-author("andrAnat").
+
+%% API
+-export([decodem/1,create/1,list_to_list/2]).
+
+decodem([])->[];
+decodem(TL)->decodem(TL,[]).
+
+decodem([],RDY)-> p05:reverse1(RDY);
+decodem([HD|TL],RDY) when is_tuple(HD)-> List=create(HD),decodem(TL,list_to_list(List,RDY));
+decodem([HD|TL],RDY) -> decodem(TL,[HD|RDY]).
+
+create({0,_})-> [];
+create({Much,Num})-> [Num|create({Much-1,Num})].
+
+list_to_list([],[])->[];
+list_to_list([],Ready)->Ready;
+list_to_list([H|T],Ready)->list_to_list(T,[H|Ready]).
