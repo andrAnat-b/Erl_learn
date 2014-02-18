@@ -1,0 +1,12 @@
+-module(p11).
+-author("andrAnat").
+
+%% API
+-export([encodem/1]).
+
+encodem([])->[];
+encodem([HD|TL])->encodem(TL,{1,HD},[]).
+encodem([],RDY,READY)-> p05:reverse1([RDY|READY]);
+encodem([HD|TL],{Sum,HD},Ready)-> encodem(TL,{Sum+1,HD},Ready);
+encodem([HD|TL],{1,Diff},Ready)-> encodem(TL,{1,HD},[Diff|Ready]);
+encodem([HD|TL],HDN,Ready)-> encodem(TL,{1,HD},[HDN|Ready]).
