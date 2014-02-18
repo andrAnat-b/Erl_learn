@@ -1,0 +1,9 @@
+-module(p01).
+-author("andrAnat").
+
+%% API
+-export([last/1]).
+
+last([])->[];
+last([X])->[X];
+last([_|TL])->last(TL).
