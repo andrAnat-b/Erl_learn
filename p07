@@ -1,0 +1,18 @@
+-module(p07).
+-author("andrAnat").
+
+%% API
+-export([flatten/1]).
+
+flatten([]) -> [];
+flatten(List) -> [H|T]=List,NEW=[flatten(H,[])|flatten(T)],cct(NEW).
+
+flatten([],RDY) -> RDY;
+flatten(LST,RDY) -> [H|T]=LST,case is_list(H) of
+                              true -> flatten(H,RDY);
+                              false -> flatten(T,[H|RDY])
+                            end.
+cct([])-> [];
+cct(LST) -> [H|T]=LST, addict(H,cct(T)).
+
+addict(Head,Tail)-> rvrs(Head)++Tail.
