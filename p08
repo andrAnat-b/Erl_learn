@@ -1,0 +1,11 @@
+-module(p08).
+-author("andrAnat").
+
+%% API
+-export([compress/1]).
+
+compress([])->[];
+compress([HD|TL])->compress(TL,[HD]).
+compress([],Ready)->p05:reverse1(Ready);
+compress([HD|TL],[HD|_]=Ready)->compress(TL,Ready);
+compress([HD|TL],Ready)->compress(TL,[HD|Ready]).
