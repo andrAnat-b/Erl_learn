@@ -1,0 +1,13 @@
+-module(p06).
+-author("andrAnat").
+
+%% API
+-export([is_palindrome/1]).
+
+is_palindrome([])->false;
+is_palindrome([_])->true;
+is_palindrome([X,X])->true;
+is_palindrome([HD|TL])->[HD2|TL2]=p05:reverse1(TL),case HD==HD2 of
+                                           true-> is_palindrome(TL2);
+                                           false-> false
+                                         end.
