@@ -1,0 +1,8 @@
+-module(p14).
+-author("andrAnat").
+
+%% API
+-export([duplicate/1]).
+
+duplicate([])->[];
+duplicate([HD|TL])-> [HD,HD|duplicate(TL)].
